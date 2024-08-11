@@ -1,0 +1,35 @@
+import {GroupBox, LineEdit, Button, ComboBox} from "std-widgets.slint";
+
+export component MainWindow inherits Window {
+    title: "Main Window";
+    width: 600px;
+    height: 500px;
+    VerticalLayout {
+        alignment: start;
+        padding-left: 25px;
+        padding-right: 25px;
+        Text {
+            font-size: 66px;
+            font-weight: 1000;
+            color: #6776FF;
+        }
+
+        GroupBox {
+            title: "lineEdit";
+            LineEdit {
+                placeholder-text: "enter text";
+            }
+        }
+
+        ComboBox {
+            model: ["first", "second", "third"];
+        }
+
+        Button {
+            text: "Click Me";
+            clicked => {
+                self.text = "Clicked";
+            }
+        }
+    }
+}
