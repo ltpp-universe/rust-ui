@@ -1,5 +1,5 @@
-slint::include_modules!();
+mod init;
 
 fn main() {
-    MainWindow::new().unwrap().run().unwrap();
+    init::init::run();
 }

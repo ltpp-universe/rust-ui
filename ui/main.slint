@@ -1,34 +1,42 @@
-import {GroupBox, LineEdit, Button, ComboBox} from "std-widgets.slint";
+import {GroupBox, LineEdit, Button, ComboBox, GridBox} from "std-widgets.slint";
+import { BindInput } from "bind-input.slint";
+import { ModelInput } from "model-input.slint";
 
 export component MainWindow inherits Window {
-    title: "Main Window";
-    width: 600px;
-    height: 500px;
+    title: "Rust Slint UI";
+    min-width: 300px;
+    min-height: 600px;
+    max-width: 300px;
+    max-height: 600px;
+    in-out property <string> parent_text: "父组件初始文本";
     VerticalLayout {
         alignment: start;
         padding-left: 25px;
         padding-right: 25px;
-        Text {
-            font-size: 66px;
-            font-weight: 1000;
-            color: #6776FF;
+        BindInput {
+            input_text: root.parent_text;
         }
 
-        GroupBox {
-            title: "lineEdit";
-            LineEdit {
-                placeholder-text: "enter text";
-            }
+        Text {
+            text: "双向绑定父组件文本：" + root.parent_text;
+        }
+
+        ModelInput {
+            input_text <=> root.parent_text;
         }
 
         ComboBox {
-            model: ["first", "second", "third"];
+            model: ["1", "2", "3"];
+        }
+
+        GridBox {
+            height: 6px;
         }
 
         Button {
-            text: "Click Me";
+            text: "点击";
             clicked => {
-                self.text = "Clicked";
+                self.text = "已点击";
             }
         }
     }

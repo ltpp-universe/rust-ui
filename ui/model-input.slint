@@ -1,0 +1,25 @@
+import {GroupBox, LineEdit} from "std-widgets.slint";
+
+export component ModelInput {
+    // in-out 子组件可修改父组件数据，父组件可修改子组件数据（双向绑定）
+    in-out property <string> input_text;
+    VerticalLayout {
+        width: 100%;
+        Text {
+            text: "双向绑定子组件文本：" + root.input_text;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6776FF;
+            font-family: "SimSun";
+            wrap: word-wrap;
+        }
+
+        GroupBox {
+            title: "双向绑定输入框";
+            LineEdit {
+                placeholder-text: "请输入文字";
+                text <=> root.input_text;
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+import {GroupBox, LineEdit} from "std-widgets.slint";
+
+export component BindInput {
+    // in 子组件不可修改父组件数据（只读）
+    in property <string> input_text;
+    VerticalLayout {
+        width: 100%;
+        Text {
+            text: "单向绑定子组件文本：" + root.input_text;
+            font-size: 16px;
+            font-weight: 500;
+            color: #6776FF;
+            font-family: "SimSun";
+            wrap: word-wrap;
+        }
+
+        GroupBox {
+            title: "单向绑定输入框（无法修改父组件传入数据）";
+            LineEdit {
+                placeholder-text: "请输入文字";
+                text: root.input_text;
+            }
+        }
+    }
+}
